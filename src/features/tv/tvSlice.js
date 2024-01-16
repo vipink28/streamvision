@@ -13,7 +13,7 @@ export const fetchNetflixOriginals = createAsyncThunk(
     'tv/fetchNetflixOriginals',
     async () => {
         const response = await axios.get(requests.getNetflixOriginals);
-        console.log(response);
+        return response.data;
     }
 )
 
