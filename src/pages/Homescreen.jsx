@@ -10,11 +10,12 @@ function Homescreen(props) {
     useEffect(() => {
         dispatch(fetchNetflixOriginals());
     }, [])
+    const randomIndex = Math.floor(Math.random() * data?.results.length)
 
     return (
         <>
             {status === "success" ?
-                <Header video={data.results[0]} /> : "... Loading"
+                <Header video={data.results[randomIndex]} /> : "... Loading"
             }
         </>
     );
