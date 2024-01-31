@@ -6,6 +6,8 @@ import YouTubePlayer from '../components/YouTubePlayer';
 import Ratings from '../components/Ratings';
 import GenreLink from '../components/GenreLink';
 import Card from '../components/Card';
+import { streamTypes } from '../helper/apirequests';
+import ShowDetails from '../components/ShowDetails';
 
 function Details(props) {
     const dispatch = useDispatch();
@@ -67,6 +69,12 @@ function Details(props) {
                         </div>
                     </div>
                 </div>
+
+                {
+                    type === streamTypes.tv ?
+                        <ShowDetails seasons={data?.seasons} /> : ""
+                }
+
             </div>
         </div>
     );

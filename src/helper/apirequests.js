@@ -4,6 +4,7 @@ export const requests = {
     getNetflixOriginals: `discover/tv?api_key=${API_KEY}&with_networks=213&language=en-US&page=1`,
     getCollections: (streamType, endpoint) => `${streamType}/${endpoint}?api_key=${API_KEY}&language=en-US&page=1`,
     getVideo: (streamType, id) => `${streamType}/${id}?api_key=${API_KEY}&language=en-US&append_to_response=videos,credits,recommendations,similar,reviews`,
+    getSeasonDetails: (seasonId, seasonNumber) => `tv/${seasonId}/season/${seasonNumber}?api_key=${API_KEY}&language=en-US`
 }
 
 export const streamTypes = {
