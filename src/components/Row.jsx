@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUpcomingMovies, selectUpcomingMovies } from '../features/movie/movieSlice';
 
 function Row(props) {
-    const { action, selector, title } = props;
+    const { action, selector, title, streamType } = props;
     const dispatch = useDispatch();
     const upcomingMovies = useSelector(selector);
     const { status, data, error } = upcomingMovies;
@@ -26,8 +26,8 @@ function Row(props) {
                     status === "success" ?
                         data?.results.map((video) => {
                             return (
-                                <SwiperSlide>
-                                    <Card video={video} />
+                                <SwiperSlide key={video?.id}>
+                                    <Card video={video} streamType={streamType} />
                                 </SwiperSlide>
                             )
                         })

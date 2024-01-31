@@ -18,7 +18,7 @@ function Homescreen(props) {
     return (
         <>
             {status === "success" ?
-                <Header video={data.results[randomIndex]} streamType='tv' /> : "... Loading"
+                <Header video={data.results[randomIndex]} streamType={streamTypes.tv} /> : "... Loading"
             }
 
             <div className='container-fluid'>
