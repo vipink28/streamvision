@@ -72,7 +72,7 @@ function Details(props) {
 
                 {
                     type === streamTypes.tv ?
-                        <ShowDetails seasons={data?.seasons} /> : ""
+                        <ShowDetails seasons={data?.seasons} seriesId={data?.id} /> : ""
                 }
 
             </div>

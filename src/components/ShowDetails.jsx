@@ -4,7 +4,7 @@ import { requests } from '../helper/apirequests';
 import EpisodeRow from './EpisodeRow';
 
 function ShowDetails(props) {
-    const { seasons } = props;
+    const { seasons, seriesId } = props;
     const [seasonDetails, setSeasonDetails] = useState(null);
 
     const fetchSeasonDetails = async (id, num) => {
@@ -14,14 +14,13 @@ function ShowDetails(props) {
 
     useEffect(() => {
         if (seasons) {
-            fetchSeasonDetails(seasons[0].id, seasons[0].season_number)
+            fetchSeasonDetails(seriesId, seasons[0].season_number)
         }
     }, [seasons])
 
     const onSeasonChange = (e) => {
-        let seasonNum = e.target.options[e.target.options.selectedIndex].dataset.seasonnum;
         const { value } = e.target;
-        fetchSeasonDetails(value, seasonNum);
+        fetchSeasonDetails(seriesId, value);
     }
     return (
         <div className='container-fluid py-4'>
@@ -29,7 +28,7 @@ function ShowDetails(props) {
                 <div className='ms-auto'>
                     <select className='form-select' name="season" onChange={onSeasonChange}>
                         {seasons?.map((season) => (
-                            <option value={season.id} data-seasonnum={season.season_number}>{season.name}</option>
+                            <option value={season.season_number} >{season.name}</option>
                         ))
                         }
                     </select>
