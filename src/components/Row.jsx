@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import axios from '../helper/axios';
 
 import 'swiper/css';
 import Card from './Card';
@@ -32,22 +33,40 @@ function Row(props) {
     return (
         <div className='py-3'>
             <h3 className='mb-3'>{title}</h3>
-            <Swiper
-                spaceBetween={20}
-                slidesPerView={5}
-            >
-                {
-                    status === "success" ?
-                        data?.results.map((video) => {
-                            return (
-                                <SwiperSlide key={video?.id}>
-                                    <Card video={video} streamType={streamType} />
-                                </SwiperSlide>
-                            )
-                        })
-                        : "...Loading"
-                }
-            </Swiper>
+            {
+                genre ?
+                    <Swiper
+                        spaceBetween={20}
+                        slidesPerView={5}
+                    >
+                        {
+                            collectionByGenre?.map((video) => {
+                                return (
+                                    <SwiperSlide key={video?.id}>
+                                        <Card video={video} streamType={streamType} />
+                                    </SwiperSlide>
+                                )
+                            })
+                        }
+                    </Swiper>
+                    :
+                    <Swiper
+                        spaceBetween={20}
+                        slidesPerView={5}
+                    >
+                        {
+                            status === "success" ?
+                                data?.results.map((video) => {
+                                    return (
+                                        <SwiperSlide key={video?.id}>
+                                            <Card video={video} streamType={streamType} />
+                                        </SwiperSlide>
+                                    )
+                                })
+                                : "...Loading"
+                        }
+                    </Swiper>
+            }
         </div>
     );
 }
