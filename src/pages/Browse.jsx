@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import { requests } from '../helper/apirequests';
 import axios from '../helper/axios';
 import Row from '../components/Row';
+import { shuffle } from '../helper/utility';
 
 function Browse(props) {
     const { type } = useParams();
@@ -17,7 +18,7 @@ function Browse(props) {
 
     const fetchGenreList = async (type) => {
         const response = await axios.get(requests.getGenreList(type));
-        setGenreList(response.data.genres);
+        setGenreList(shuffle(response.data.genres));
     }
 
     useEffect(() => {
@@ -40,10 +41,19 @@ function Browse(props) {
             {status === "success" ?
                 <Header video={data.results[randomIndex]} streamType={type} /> : "... Loading"
             }
-            {
-                genreList !== null ?
-                    <Row title={genreList[0]?.name} genre={genreList[0]} streamType={type} /> : ""
-            }
+            <div className='container-fluid'>
+                {
+                    genreList !== null ?
+                        genreList?.map((genre, index) => {
+                            return (
+                                index < 6 ?
+                                    <Row key={genre.id} title={genre?.name} genre={genre} streamType={type} />
+                                    : ""
+                            )
+                        }) : ""
+
+                }
+            </div>
         </>
     );
 }
