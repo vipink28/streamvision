@@ -40,7 +40,7 @@ function Header(props) {
                             <h1 className='title display-2'>{data?.name || data?.original_name || data?.title || data?.original_title}</h1>
                             <p className='lead'>{data?.overview}</p>
                             <Ratings voteAverage={data?.vote_average} voteCount={data?.vote_count} />
-                            <GenreLink genreList={data?.genres} />
+                            <GenreLink genreList={data?.genres} streamType={streamType} />
                             <div className='d-flex gap-2'>
                                 <button className='btn btn-danger' onClick={handleTrailer}>Play</button>
                                 <button className='btn btn-warning' onClick={showDetails}>More Info</button>

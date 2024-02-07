@@ -8,6 +8,7 @@ import Navbar from './global/components/Navbar';
 import Details from './pages/Details';
 import Browse from './pages/Browse';
 import BrowseByGenre from './pages/BrowseByGenre';
+import SearchResults from './pages/SearchResults';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/details/:type/:id' element={<Details />}></Route>
         <Route path='/browse/:type' element={<Browse />}></Route>
         <Route path='/browsebygenre/:type/:id' element={<BrowseByGenre />}></Route>
+        <Route path='/search/:type' element={<SearchResults />}></Route>
       </Routes>
     </BrowserRouter>
   );

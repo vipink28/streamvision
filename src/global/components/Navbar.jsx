@@ -1,7 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { searchQueryReducer } from '../../features/common/commonSlice';
 
 function Navbar(props) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        let { value } = e.target;
+        dispatch(searchQueryReducer(value));
+        if (value.length >= 3) {
+            navigate('/search/movie');
+        }
+    }
     return (
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark">
             <div className="container-fluid">
@@ -39,8 +51,7 @@ function Navbar(props) {
                         </li>
                     </ul>
                     <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={handleSearch} />
                     </form>
                 </div>
             </div>

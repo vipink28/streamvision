@@ -7,6 +7,8 @@ export const requests = {
     getSeasonDetails: (seasonId, seasonNumber) => `tv/${seasonId}/season/${seasonNumber}?api_key=${API_KEY}&language=en-US`,
     getGenreList: (type) => `genre/${type}/list?api_key=${API_KEY}&language=en`,
     getByGenre: (type, genreId) => `discover/${type}?api_key=${API_KEY}&with_genres=${genreId}&language=en-US&page=1`,
+
+    getBySearch: (type, query) => `search/${type}?api_key=${API_KEY}&query=${query}&language=en-US&page=1`,
 }
 
 export const streamTypes = {
